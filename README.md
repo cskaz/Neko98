@@ -8,3 +8,7 @@ For a detailed description of Neko's history, try the new Neko Fan Page.
 - Create more than one Neko
 - Use any icon library (.icl) to change how Neko appears
 - Make Neko chase the mouse or run around anywhere!
+
+# For Windows10 
+- In order to support Windows 10 and VS2019, some changes are needed. Also, some neko sizes are not available
+- WIP,but working.
