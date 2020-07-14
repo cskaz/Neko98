@@ -1,14 +1,13 @@
-# Neko For Windows
-Neko for Windows is a little white cat who runs around on the desktop and chases the mouse cursor. You can customise how Neko appears in many ways, and can even make him run on top of all other windows. Neko was ported by me from the original X-Windows source code that was written by Masayuki Koba.
+# ねこ for Windows
+ねこ for Windowsは、デスクトップ上を走り回り、マウスカーソルを追いかける小さな白い猫です。 ねこの表示方法はさまざまな方法でカスタマイズでき、全てのウィンドウ上で実行できます。 ねこは、Koba Masayukiによって書かれたオリジナルのX-Windowソースコードから移植されました。
 
-For a detailed description of Neko's history, try the new Neko Fan Page.
+ねこの歴史の詳細については、新しいねこファンページをご覧ください。
+# 特徴
+- 猫を常に一番上に走らせる
+- 複数の猫を表示する
+- アイコンライブラリ（.icl）を使用して、ネコの見た目を変更する
+- ねこにマウスを追いかけさせたり、どこでも走らせる
 
-# Features
-- Make Neko run always on top
-- Create more than one Neko
-- Use any icon library (.icl) to change how Neko appears
-- Make Neko chase the mouse or run around anywhere!
-
-# For Windows10 
-- In order to support Windows 10 and VS2019, some changes are needed. Also, some neko sizes are not available
-- WIP,but working.
+# Windows10の場合
+- Windows 10およびVS2019をサポートするには、コードにいくつかの変更が必要です。 また、一部のサイズにおいてネコが正常に表示できないものがあります。
+- 作業中ですが、基本的な機能は動作しています。
