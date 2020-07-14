@@ -53,11 +53,11 @@ BOOL CALLBACK PropPage_Sound( HWND hPage, UINT uMsg, WPARAM wParam, LPARAM lPara
 BOOL CALLBACK PropPage_Independence( HWND hPage, UINT uMsg, WPARAM wParam, LPARAM lParam );
 BOOL CALLBACK PropPage_Effects( HWND hPage, UINT uMsg, WPARAM wParam, LPARAM lParam );
 TABINITDATA tibTabs[NUM_PAGES] = {
-    { "Display",        IDD_DISPLAY,        (DLGPROC)PropPage_Display,      IDI_TAB_DISPLAY,        NULL },
-    { "Movement",       IDD_MOVEMENT,       (DLGPROC)PropPage_Movement,     IDI_TAB_MOVEMENT,       NULL },
-    { "Sound",          IDD_SOUND,          (DLGPROC)PropPage_Sound,        IDI_TAB_SOUNDS,         NULL },
-    { "Independence",   IDD_INDEPENDENCE,   (DLGPROC)PropPage_Independence, IDI_TAB_INDEPENDENCE,   NULL },
-    { "Effects",        IDD_EFFECTS,        (DLGPROC)PropPage_Effects,      IDI_TAB_EFFECTS,        NULL },
+    { "ディスプレイ",        IDD_DISPLAY,        (DLGPROC)PropPage_Display,      IDI_TAB_DISPLAY,        NULL },
+    { "挙動",       IDD_MOVEMENT,       (DLGPROC)PropPage_Movement,     IDI_TAB_MOVEMENT,       NULL },
+    { "音",          IDD_SOUND,          (DLGPROC)PropPage_Sound,        IDI_TAB_SOUNDS,         NULL },
+    { "インディペンデンス",   IDD_INDEPENDENCE,   (DLGPROC)PropPage_Independence, IDI_TAB_INDEPENDENCE,   NULL },
+    { "効果",        IDD_EFFECTS,        (DLGPROC)PropPage_Effects,      IDI_TAB_EFFECTS,        NULL },
 };
 
 HWND g_hDlgDisplay = NULL;      //current child dialog
@@ -210,7 +210,7 @@ BOOL CALLBACK PropPage_Display( HWND hPage, UINT uMsg, WPARAM wParam, LPARAM lPa
                     ofn.lpstrFileTitle = NULL;
                     ofn.nMaxFileTitle = 0;
                     ofn.lpstrInitialDir = NULL;
-                    ofn.lpstrTitle = "Select Image Library";
+                    ofn.lpstrTitle = "イメージライブラリを選択";
                     ofn.Flags = OFN_EXPLORER|OFN_HIDEREADONLY|OFN_PATHMUSTEXIST|OFN_FILEMUSTEXIST;
                     ofn.lpstrDefExt = "icl";
                     if( GetOpenFileName( &ofn ) )
@@ -303,11 +303,11 @@ BOOL CALLBACK PropPage_Sound( HWND hPage, UINT uMsg, WPARAM wParam, LPARAM lPara
             SendDlgItemMessage( hPage, IDC_PREVIEW, BM_SETIMAGE, IMAGE_BITMAP, (LPARAM)LoadImage( g_hInstance, MAKEINTRESOURCE(IDR_PLAYBITMAP), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS ) );
             SendDlgItemMessage( hPage, IDC_SOUNDFREQ, TBM_SETRANGE, FALSE, MAKELPARAM(MIN_SNDFREQ,MAX_SNDFREQ) );
 
-            SendDlgItemMessage( hPage, IDC_SOUNDSAVAIL, LB_ADDSTRING, 0, (LPARAM)"Idle One" );
-            SendDlgItemMessage( hPage, IDC_SOUNDSAVAIL, LB_ADDSTRING, 0, (LPARAM)"Idle Two" );
-            SendDlgItemMessage( hPage, IDC_SOUNDSAVAIL, LB_ADDSTRING, 0, (LPARAM)"Idle Three" );
-            SendDlgItemMessage( hPage, IDC_SOUNDSAVAIL, LB_ADDSTRING, 0, (LPARAM)"Sleep" );
-            SendDlgItemMessage( hPage, IDC_SOUNDSAVAIL, LB_ADDSTRING, 0, (LPARAM)"Awake" );
+            SendDlgItemMessage( hPage, IDC_SOUNDSAVAIL, LB_ADDSTRING, 0, (LPARAM)"アイドル　1" );
+            SendDlgItemMessage( hPage, IDC_SOUNDSAVAIL, LB_ADDSTRING, 0, (LPARAM)"アイドル  2" );
+            SendDlgItemMessage( hPage, IDC_SOUNDSAVAIL, LB_ADDSTRING, 0, (LPARAM)"アイドル  3" );
+            SendDlgItemMessage( hPage, IDC_SOUNDSAVAIL, LB_ADDSTRING, 0, (LPARAM)"寝る" );
+            SendDlgItemMessage( hPage, IDC_SOUNDSAVAIL, LB_ADDSTRING, 0, (LPARAM)"起きる" );
 
             //load the playing cursor
             s_hcPlaying = LoadCursor( g_hInstance, MAKEINTRESOURCE(IDC_PLAYING) );
@@ -461,11 +461,11 @@ BOOL CALLBACK PropPage_Independence( HWND hPage, UINT uMsg, WPARAM wParam, LPARA
     switch( uMsg )
     {
         case WM_INITDIALOG:
-            SendDlgItemMessage( hPage, IDC_ACTION, CB_ADDSTRING, 0, (LPARAM)"Chase the mouse (default)" );
-            SendDlgItemMessage( hPage, IDC_ACTION, CB_ADDSTRING, 0, (LPARAM)"Run away from the mouse");
-            SendDlgItemMessage( hPage, IDC_ACTION, CB_ADDSTRING, 0, (LPARAM)"Run around randomly");
-            SendDlgItemMessage( hPage, IDC_ACTION, CB_ADDSTRING, 0, (LPARAM)"Pace around the screen");
-            SendDlgItemMessage( hPage, IDC_ACTION, CB_ADDSTRING, 0, (LPARAM)"Run around the screen");
+            SendDlgItemMessage( hPage, IDC_ACTION, CB_ADDSTRING, 0, (LPARAM)"マウスを追う (デフォルト)" );
+            SendDlgItemMessage( hPage, IDC_ACTION, CB_ADDSTRING, 0, (LPARAM)"マウスから逃げる");
+            SendDlgItemMessage( hPage, IDC_ACTION, CB_ADDSTRING, 0, (LPARAM)"ランダムに走り回る");
+            SendDlgItemMessage( hPage, IDC_ACTION, CB_ADDSTRING, 0, (LPARAM)"画面の周りのスペース");
+            SendDlgItemMessage( hPage, IDC_ACTION, CB_ADDSTRING, 0, (LPARAM)"画面を走り回る");
             break;
 
         case MY_WRITESETTINGS:
@@ -488,11 +488,11 @@ BOOL CALLBACK PropPage_Independence( HWND hPage, UINT uMsg, WPARAM wParam, LPARA
                     if( HIWORD(wParam) == CBN_SELCHANGE )
                     {
                         const char* szActionDesc[] = {
-                            "Neko will follow the mouse cursor wherever it goes",
-                            "Neko will run away when the mouse cursor gets too near, and sleep when it isn't near",
-                            "Neko will run to a random spot on the desktop, sleep for a while, and then continue running around",
-                            "Neko will run around the outside of the desktop",
-                            "Neko will run around the desktop, without stopping"
+                            "ねこはマウスカーソルを追います。",
+                            "ねこはマウスカーソルが近づくと逃げ出しますが、近づかないと寝てしまいます。",
+                            "ねこはデスクトップのどこかに走り、すこし寝てから、走り続けます。",
+                            "ねこはデスクトップの外を走り回ります。",
+                            "ねこは止まることなく、デスクトップを走り続けます。"
                         };
 
                         SetDlgItemText( hPage, IDC_ACTIONDESC, szActionDesc[SendDlgItemMessage( hPage, IDC_ACTION, CB_GETCURSEL, 0, 0 )] );
